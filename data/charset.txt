@@ -1,0 +1,14 @@
+movie_actors.dat:                 text/plain; charset=iso-8859-1
+movie_countries.dat:              text/plain; charset=us-ascii
+movie_directors.dat:              text/plain; charset=iso-8859-1
+movie_genres.dat:                 text/plain; charset=us-ascii
+movie_locations.dat:              text/plain; charset=iso-8859-1
+movie_tags.dat:                   text/plain; charset=us-ascii
+movies.dat:                       text/plain; charset=iso-8859-1
+readme.txt:                       text/plain; charset=iso-8859-1
+tags.dat:                         text/plain; charset=iso-8859-1
+test.dat:                         text/plain; charset=utf-8
+user_ratedmovies-timestamps.dat:  text/plain; charset=us-ascii
+user_ratedmovies.dat:             text/plain; charset=us-ascii
+user_taggedmovies-timestamps.dat: text/plain; charset=us-ascii
+user_taggedmovies.dat:            text/plain; charset=us-ascii

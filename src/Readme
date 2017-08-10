@@ -1,0 +1,73 @@
+Quick Start
+1. Ensure you have ojdbc6.jar
+   http://www.oracle.com/technetwork/apps-tech/jdbc-112010-090769.html
+2. Make sure the .dat files and ojdbc6.jar are in the same directory as
+   Populate.java and hw3.java
+   The only tables/files we need are: movies, movie_genres, movie_directors,
+   movie_actors, movie_countries, tags, movie_tags, user_taggedmovies,
+   user_ratedmovies
+3. Compile the files: javac -cp ojdbc6.jar file.java
+   Note: "file.java" will be either "Populate.java" or "hw3.java"
+4. To populate the database: java -cp .:ojdbc6.jar Populate [f1.dat f2.dat ...]
+   Note: can pass in * to arguments to populate database using all necessary
+   files
+5. Run the GUI: java -cp .:ojdbc6.jar hw3
+===============================================================================
+GUI
+1. The top section contains attributes you can specify to narrow down search
+   results
+2. The "Querying" text area shows the SQL select statement to be executed
+3. The "Results" text area shows the results of the SQL select statement in
+   the following format:
+   RESULT               #
+   TITLE                title
+   YEAR                 year
+   COUNTRY              country
+   CRITICS_RATING       (rtTopCriticsRating + rtAllCrticsRating) / 2
+   CRITICS_NUMREVIEWS   (rtTopCriticsNumReviews + rtAllCriticsNumReviews) / 2
+   AUDIENCE_RATING      rtAudienceRating
+   AUDIENCE_NUMREVIEWS  rtAudienceNumReviews
+   GENRES               CSV list of genres for movie
+   TAGS                 CSV list of user tags (from user_taggedmovies) for movie
+Searchable Attributes
+1. Genres: If multiple are selected, refer to buttons for ANY/ALL
+2. Country: If multiple are selected, select movies that match ANY
+3. Director: Only one director name is allowed
+4. Actors: If multiple are selected, refer to buttons for ANY/ALL
+5. Movie Ratings: for rating value, the number specified will be compared
+   against (rtAllCriticsRating + rTopCriticsrating + rtAudienceRating)/3;
+   for count value, the number specified will be compared against
+   (rtAllCriticsNumReviews + rtTopCriticsNumReviews + rtAudienceNumReviews)/3.
+   If both are specified, they are taken in conjunction (AND)
+6. Movie Year: the years specifed are inclusive (>= FROM AND <= TO)
+7. Users' Tags and Ratings: Regardless of what values are specified in this
+   section, the query results will list ALL tags of the movie.
+   The movie simply must match all of the values selected in this section.
+   Example: Suppose User ID = 200, from date = 10/10/1990, to date = 01/01/2000
+   Rating < 10, Tags = t1,t2. The movies that satisfy this search are movies
+   that a user with an id of 200 has rated below 6, with the
+   rating made between the dates 10/10/1990 and 01/01/2000. Furthermore,
+   that same user must have also tagged the movies with t1 and/or t2
+   (and/or depends on whether ALL or ANY was chosen)
+   Note: this section searches from the table/data file user_ratedmovies and
+   user_taggedmovies
+8. Run options: if AND is chosen, all seven sections are taken in conjunction
+   with each other; otherwise if OR is chosen, all seven sections are taken in
+   disjunction.
+
+ANY/ALL: options are given only for genres, actors, and user tags
+ANY: if a section has ANY selected, movies that contain any of the values for
+that particular attribute will be returned
+ALL: if a section has ALL selected, movies that contain AT LEAST all of the
+values selected for that particular attribute will be returned.
+
+Basic underlying assumption of the queries: we find all movie_id's that match
+the specified search criteria and return ALL the necessary information for
+that movie_id.
+Suppose you searched for ANY of the following tags: funny, comedy, hilarious.
+Movies that were tagged by user as having at least one of those tags are
+considered to have satisfied the search criteria. In addition, all of the tags
+made by users will be returned in a list for those movies. Basically,
+regardless of what was specified in the tags section, all of the tags belonging
+to those movies will be returned, not just the ones specified.
+===============================================================================

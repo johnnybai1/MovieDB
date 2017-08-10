@@ -1,0 +1,5 @@
+host: JOHNNY-PC
+port: 1521
+db: orcl
+user: scott
+pass: tiger
